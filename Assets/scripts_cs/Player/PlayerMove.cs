@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class PlayerMove : MonoBehaviour
 {
     public FixedJoystick fixedJoystick;
 
@@ -76,6 +76,9 @@ public class Player : MonoBehaviour
         // В обучалке движение с физикой. Решил попробовать его
         _rb.MovePosition(_rb.position + _deltaPosition * Time.fixedDeltaTime);
     }
+
+    // Animation
+
     private void HorizonFlipper(){
         if (_inputMove.x > 0){
             transform.localScale = new Vector3 (1, transform.localScale.y, transform.localScale.z);
@@ -83,6 +86,9 @@ public class Player : MonoBehaviour
             transform.localScale = new Vector3 (-1, transform.localScale.y, transform.localScale.z);
         }
     }
+
+    // Health
+
     public void PlayerTakeDamage(int _damage){
         _playerHealth -= _damage;
     }
