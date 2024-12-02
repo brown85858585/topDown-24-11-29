@@ -11,6 +11,7 @@ public class GameConstants {
 [System.Serializable]
 public class PlayerConstants {
     public float playerSpeed;
+    public int playerHealth;
 }
 
 public static class GameConstReader
