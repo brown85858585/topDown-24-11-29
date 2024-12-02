@@ -22,7 +22,6 @@ public class Player : MonoBehaviour
         MoveNormalize();
         CheckInput();
         MoveState();
-        // normoliz????
         NewPosition();
     }
     private void InputTaker(){
@@ -51,7 +50,7 @@ public class Player : MonoBehaviour
         );
     }
     private void IdleState(){
-        deltaPosition = new Vector2 (0, 0);
+        deltaPosition = Vector2.zero;
     }
     private void NewPosition() {
         transform.position = new Vector2 (
