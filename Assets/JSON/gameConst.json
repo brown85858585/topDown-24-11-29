@@ -2,5 +2,8 @@
     "player": {
         "playerSpeed": 5.0,
         "playerHealth": 10
+    },
+    "environment": {
+        "bulletSpeed": 10
     }
 }

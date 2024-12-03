@@ -5,13 +5,19 @@ using UnityEngine;
 public class GameConstants {
     // Эта бешаня структура позволяет напрямую обращаться к объектам из JSON
     // вот так Debug.Log(GameConstReader.gameConstants.player.playerSpeed);
-    public PlayerConstants player;
+    public PlayerConstants player; //environment.bulletSpeed
+    public EnvironmentConstants environment;
 }
 
 [System.Serializable]
 public class PlayerConstants {
     public float playerSpeed;
     public int playerHealth;
+}
+
+[System.Serializable]
+public class EnvironmentConstants {
+    public float bulletSpeed;
 }
 
 public static class GameConstReader

@@ -18,12 +18,15 @@ public class GunRotation : MonoBehaviour
     }
     private void UpdateMaker(){
         ScreenMouseVector3();
-        float rotationZ = Mathf.Atan2(_difference.y, _difference.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotationZ + _offset);
+        AddRotation();
     }
     private void ScreenMouseVector3(){
         Vector3 _cameraMousePisotion = Camera.main.ScreenToWorldPoint (Input.mousePosition);
         _difference = _cameraMousePisotion - transform.position;
+    }
+    private void AddRotation() {
+        float rotationZ = Mathf.Atan2(_difference.y, _difference.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, rotationZ + _offset);
     }
 }
 // https://t.me/natureModelSpb
