@@ -13,25 +13,25 @@ public class PlayerMove : MonoBehaviour
     private Vector2 _inputMove = Vector2.zero;
     private Vector2 _deltaPosition;
     private Rigidbody2D _rb;
-    //персонаж повернут вправо
+    // персонаж повЕрнут вправо
     private bool _moveRight = true;
-
+    // interface
     public float inputMoveX() {
         return _inputMove.x;
     }
     public bool moveRight() {
         return _moveRight;
     }
-
+    // start
     private void Start()
     {
         StartMaker();
     }
-    private void StartMaker(){
+    private void StartMaker() {
         _playerSpeed = GameConstReader.gameConstants.player.playerSpeed;
         _rb = GetComponent<Rigidbody2D>();
     }
-
+    // Update
     private void Update(){
         InputTaker();
         CheckInput();
@@ -72,13 +72,13 @@ public class PlayerMove : MonoBehaviour
     private void IdleState(){
         _deltaPosition = Vector2.zero;
     }
-    private void NewPosition() {
-        // Не физичное движение
-        transform.position = new Vector2 (
-            transform.position.x + _deltaPosition.x * Time.deltaTime ,
-            transform.position.y + _deltaPosition.y * Time.deltaTime 
-        );
-    }
+    // private void NewPosition() {
+    //     // Не физичное движение. Кажется, мы расстанемся
+    //     transform.position = new Vector2 (
+    //         transform.position.x + _deltaPosition.x * Time.deltaTime ,
+    //         transform.position.y + _deltaPosition.y * Time.deltaTime 
+    //     );
+    // }
     private void RbMovePosition(){
         // В обучалке движение с физикой. Решил попробовать его
         _rb.MovePosition(_rb.position + _deltaPosition * Time.fixedDeltaTime);

@@ -14,6 +14,8 @@ public class HealthCounter : MonoBehaviour
         _health = GameConstReader.gameConstants.player.playerHealth;
     }
     public void TakeDamage(int _damage){
-        _health -= _damage;
+        if (_damage > 0){
+            _health -= _damage;
+        }
     }
 }

@@ -2,27 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gun : MonoBehaviour
+public class GunFlip : MonoBehaviour
 {
     public PlayerMove playerMove;
     // private
-    private float _offset = 0f;
-    private Vector3 _difference;
+    private GunRotation gunRotation;
     private bool faceRight = true;
     private bool moveRight = true;
+    // start
+    private void Start() {
+        StartMaker();
+    }
+    private void StartMaker() {
+        gunRotation = GetComponent<GunRotation>();
+    }
+    // Update
     private void Update(){
         UpdateMaker();
     }
     private void UpdateMaker(){
-        ScreenMouseVector3();
         FlipCheckH();
         FlipCheckV();
-        float rotationZ = Mathf.Atan2(_difference.y, _difference.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotationZ + _offset);
-    }
-    private void ScreenMouseVector3(){
-        Vector3 _cameraMousePisotion = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-        _difference = _cameraMousePisotion - transform.position;
     }
     private void FlipCheckH(){
         if (!moveRight && playerMove.moveRight()){
@@ -33,10 +33,10 @@ public class Gun : MonoBehaviour
         }
     }
     private void FlipCheckV(){
-        if(faceRight && _difference.x < 0) {
+        if(faceRight && gunRotation.differenceX() < 0) {
             FliperV();
         }
-        if(!faceRight && _difference.x > 0) {
+        if(!faceRight && gunRotation.differenceX() > 0) {
             FliperV();
         }
     }
@@ -53,3 +53,4 @@ public class Gun : MonoBehaviour
         transform.localScale = Scale;
     }
 }
+// https://t.me/natureModelSpb
