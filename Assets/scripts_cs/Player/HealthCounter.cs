@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class HealthCounter : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private int _health;
+    private void Start()
     {
-        
+        StartMaker();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void StartMaker(){
+        // Когда добавятся юниты, будем тащить суда значения проверяя владельца по тегу
+        _health = GameConstReader.gameConstants.player.playerHealth;
+    }
+    public void TakeDamage(int _damage){
+        _health -= _damage;
     }
 }

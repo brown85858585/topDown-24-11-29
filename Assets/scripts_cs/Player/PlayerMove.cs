@@ -8,12 +8,20 @@ public class PlayerMove : MonoBehaviour
 
     // Privates
     private float _playerSpeed; // Скорость игрока настраивается в JSON
-    private int _playerHealth;
     private string _horizontal = "Horizontal";
     private string _vertical = "Vertical";
-    private Vector2 _inputMove;
+    private Vector2 _inputMove = Vector2.zero;
     private Vector2 _deltaPosition;
     private Rigidbody2D _rb;
+    //персонаж повернут вправо
+    private bool _moveRight = true;
+
+    public float inputMoveX() {
+        return _inputMove.x;
+    }
+    public bool moveRight() {
+        return _moveRight;
+    }
 
     private void Start()
     {
@@ -21,7 +29,6 @@ public class PlayerMove : MonoBehaviour
     }
     private void StartMaker(){
         _playerSpeed = GameConstReader.gameConstants.player.playerSpeed;
-        _playerHealth = GameConstReader.gameConstants.player.playerHealth;
         _rb = GetComponent<Rigidbody2D>();
     }
 
@@ -60,7 +67,7 @@ public class PlayerMove : MonoBehaviour
             _playerSpeed * _inputMove.x,
             _playerSpeed * _inputMove.y
         );
-        HorizonFlipper();
+        FlipCheckH();
     }
     private void IdleState(){
         _deltaPosition = Vector2.zero;
@@ -79,18 +86,20 @@ public class PlayerMove : MonoBehaviour
 
     // Animation
 
-    private void HorizonFlipper(){
-        if (_inputMove.x > 0){
-            transform.localScale = new Vector3 (1, transform.localScale.y, transform.localScale.z);
-        } else {
-            transform.localScale = new Vector3 (-1, transform.localScale.y, transform.localScale.z);
+    private void FlipCheckH(){
+        if (_moveRight && _inputMove.x < 0) {
+            FliperH();
+        }
+        if (!_moveRight && _inputMove.x > 0) {
+            FliperH();
         }
     }
 
-    // Health
-
-    public void PlayerTakeDamage(int _damage){
-        _playerHealth -= _damage;
+    private void FliperH(){
+        _moveRight = !_moveRight;
+        Vector3 Scale = transform.localScale;
+        Scale.x *= -1;
+        transform.localScale = Scale;
     }
 }
 // Довольно просто пишется. Сам в шоке
