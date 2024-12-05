@@ -3,6 +3,10 @@
         "playerSpeed": 5.0,
         "playerHealth": 10
     },
+    "enemy": {
+        "enemySpeed": 2.0,
+        "enemyHealth": 10
+    },
     "environment": {
         "bulletSpeed": 10
     }

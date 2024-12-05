@@ -72,13 +72,6 @@ public class PlayerMove : MonoBehaviour
     private void IdleState(){
         _deltaPosition = Vector2.zero;
     }
-    // private void NewPosition() {
-    //     // Не физичное движение. Кажется, мы расстанемся
-    //     transform.position = new Vector2 (
-    //         transform.position.x + _deltaPosition.x * Time.deltaTime ,
-    //         transform.position.y + _deltaPosition.y * Time.deltaTime 
-    //     );
-    // }
     private void RbMovePosition(){
         // В обучалке движение с физикой. Решил попробовать его
         _rb.MovePosition(_rb.position + _deltaPosition * Time.fixedDeltaTime);
