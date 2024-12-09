@@ -17,5 +17,11 @@ public class EnemyHealthCounter : MonoBehaviour
         if (_damage > 0){
             _health -= _damage;
         }
+        if (_health <= 0) {
+            LooseLife ();
+        }
+    }
+    private void LooseLife () {
+        Destroy(gameObject);
     }
 }

@@ -25,6 +25,7 @@ public class EnemyConstants {
 [System.Serializable]
 public class EnvironmentConstants {
     public float bulletSpeed;
+    public float bulletLifeTime;
 }
 
 public static class GameConstReader
