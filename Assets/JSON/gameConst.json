@@ -8,7 +8,7 @@
         "enemyHealth": 10
     },
     "environment": {
-        "bulletLifeTime": 2.0,
+        "bulletLifeTime": 1.5,
         "bulletSpeed": 10
     }
 }

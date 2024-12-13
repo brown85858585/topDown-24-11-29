@@ -11,16 +11,18 @@ public class EnemyMove : MonoBehaviour
     private Rigidbody2D _rb;
     private Vector2 _targetPosition = new Vector2(0, 0);
     private Vector2 _nextRBStep;
-    private float _enemySpead = 5f; // Потом подгрузим в JSON.
+    private float _enemySpeed = 5f; // Потом подгрузим в JSON.
     // interface
-    public void SetTargetPosition(Vector2 targetPosition) {
-        _targetPosition = targetPosition;
-    }
+    // public void SetTargetPosition(Vector2 targetPosition) {
+    //     _targetPosition = targetPosition;
+    // }
+
+    // start
     private void Start() {
         StartMaker();
     }
     private void StartMaker(){
-        // Двигайся на игрока! Потом
+        _enemySpeed = GameConstReader.gameConstants.enemy.enemySpeed;
         transform.position = new Vector3(8, -3, 0);
         _targetPosition = new Vector2(0, 0);
         _rb = GetComponent<Rigidbody2D>();
@@ -29,10 +31,15 @@ public class EnemyMove : MonoBehaviour
         UpdateMaker();
     }
     private void UpdateMaker() {
-        Vector3 _playerPosition = tempPlayer.GetComponent<PlayerMove>().transform.position; // временно на игрока
-        _targetPosition = (Vector2)_playerPosition;
-        float _step = _enemySpead * Time.deltaTime;
+        MoveOnPlayer();
+        float _step = _enemySpeed * Time.deltaTime;
         _nextRBStep = Vector2.MoveTowards((Vector2)transform.position, _targetPosition, _step);
+    }
+    private void MoveOnPlayer() {
+        if (tempPlayer != null) {
+            Vector3 _playerPosition = tempPlayer.GetComponent<PlayerMove>().transform.position; // временно на игрока
+            _targetPosition = (Vector2)_playerPosition;
+        }
     }
     private void FixedUpdate() {
         RbMovePosition();

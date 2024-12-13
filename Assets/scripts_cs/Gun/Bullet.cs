@@ -23,13 +23,16 @@ public class Bullet : MonoBehaviour
         _bulletLifeTime = GameConstReader.gameConstants.environment.bulletLifeTime;
         _rb = GetComponent<Rigidbody2D>();
         SetBulletVelocity();
-        Destroy(gameObject, _bulletLifeTime);
+        EndLife();
     }
     private void SetBulletVelocity() {
         // Устанавливаем скорость для Rigidbody2D
         _direction = transform.up;
         _rb.velocity = _direction * _bulletSpeed;
         _oldPosition = transform.position;
+    }
+    private void EndLife() {
+        Destroy(gameObject, _bulletLifeTime);
     }
     private void Update() {
         UpdateMaker();
@@ -43,12 +46,11 @@ public class Bullet : MonoBehaviour
     private void CheckHitBetweenPositions () {
         RaycastHit2D _hitInfo = Physics2D.Raycast(_oldPosition, transform.position, _distance, whatIsSolid);
         if (_hitInfo.collider != null) {
-            if (_hitInfo.collider.CompareTag("Enemy") 
+            if (_hitInfo.collider.CompareTag("Enemy")
             && _hitInfo.collider.GetComponent<EnemyHealthCounter>() != null) {
                 _hitInfo.collider.GetComponent<EnemyHealthCounter>().TakeDamage(_damageToEnemy);
             }
             Destroy(gameObject);
         }
-
     }
 }
