@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+// using UnityEngine.SceneManagement;
 using TMPro;
 
 public class PauseCounter : MonoBehaviour
@@ -52,3 +52,4 @@ public class PauseCounter : MonoBehaviour
         isPaused = true;
     }
 }
+// https://t.me/natureModelSpb
